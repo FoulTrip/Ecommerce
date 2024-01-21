@@ -1,0 +1,38 @@
+.btn {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.subBtn {
+    display: flex;
+    flex-direction: row;
+    /* padding: 5px 10px 5px 10px; */
+    padding: 10px;
+    cursor: pointer;
+    justify-content: space-between;
+    font-weight: 200;
+    border-radius: 10px;
+}
+
+.logoBtn {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    justify-items: flex-start;
+    gap: 5px;
+}
+
+.infoTextBtn, .btnChevron {
+    display: grid;
+    place-content: center;
+}
+
+.boxIconBtn {
+    display: grid;
+    place-content: center;
+}
+
+.subBtn:hover {
+    background: #ececec;
+}

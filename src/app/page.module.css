@@ -1,0 +1,88 @@
+.main {
+  width: 90%;
+  margin-left: 5%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.boxPartMain {
+  display: grid;
+  place-content: center;
+  flex-basis: 400px;
+  flex-grow: 1;
+}
+
+.boxPartMainImage {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  flex-basis: 400px;
+  flex-grow: 1;
+}
+
+.imgBanner {
+  width: 80%;
+  height: auto;
+  filter: drop-shadow(5px 5px 5px #989898);
+}
+
+.textDinamyc {
+  display: flex;
+  flex-wrap: wrap;
+  font-family: "Fira Sans", sans-serif;
+  font-weight: 300;
+}
+
+.centerMainPart {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.textExplainBanner {
+  font-weight: 300;
+}
+
+.boxBtns {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.infBtnSeller {
+  padding: 5px 10px 5px 10px;
+  border-radius: 1em;
+  border: 1px solid #000;
+  cursor: pointer;
+  background: #b3b3b3;
+}
+
+.infBtnSeller:hover {
+  background: #858585;
+}
+
+.infBtnShop {
+  padding: 5px 10px 5px 10px;
+  border-radius: 1em;
+  border: 1px solid #000;
+  cursor: pointer;
+  background: #60dc60;
+}
+
+.infBtnShop:hover {
+  background: #41b841;
+}
+
+.infBtn {
+  padding: 5px 10px 5px 10px;
+  border-radius: 1em;
+  border: 1px solid #000;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 900px) {
+  .main {
+    margin-top: 3em;
+  }
+}

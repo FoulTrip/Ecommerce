@@ -1,0 +1,154 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mongodb"
+    url      = env("NEXT_PUBLIC_MONGODB_URI")
+}
+
+model User {
+    id        String   @id @default(uuid()) @map("_id")
+    email     String   @unique
+    password  String
+    firstName String?
+    lastName  String?
+    avatar    String
+    role      Role     @default(USER)
+    cart      Cart[]
+    orders    Order[]
+    events    Event[]
+    ratings   Rating[]
+    reviews   Review[]
+}
+
+model Product {
+    id          String      @id @default(uuid()) @map("_id")
+    name        String
+    description String
+    price       Float
+    images      Image[]
+    cart        Cart[]
+    orderItems  OrderItem[]
+    ratings     Rating[]
+    reviews     Review[]
+    sku         String // SKU del producto
+    brand       String // Marca del producto
+    category    String // Categoría del producto
+    stock       Int // Cantidad en stock
+    dimensions  Json // Dimensiones del producto (alto, ancho, profundidad)
+    weight      Float // Peso del producto
+    materials   String[] // Materiales del producto
+    tags        String[] // Etiquetas relacionadas con el producto
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime  @updatedAt // Fecha y hora de la última actualización del producto
+}
+
+model Image {
+    id        String  @id @default(uuid()) @map("_id")
+    color     String // Color del producto en formato hexadecimal
+    url       String // URL de la imagen del producto
+    productId String // ID del producto asociado
+    product   Product @relation(fields: [productId], references: [id])
+}
+
+model Rating {
+    id        String  @id @default(uuid()) @map("_id")
+    value     Float
+    userId    String
+    productId String
+    user      User    @relation(fields: [userId], references: [id])
+    product   Product @relation(fields: [productId], references: [id])
+}
+
+model Review {
+    id        String  @id @default(uuid()) @map("_id")
+    content   String
+    userId    String
+    productId String
+    user      User    @relation(fields: [userId], references: [id])
+    product   Product @relation(fields: [productId], references: [id])
+}
+
+model Cart {
+    id        String  @id @default(uuid()) @map("_id")
+    quantity  Int
+    userId    String
+    productId String
+    user      User    @relation(fields: [userId], references: [id])
+    product   Product @relation(fields: [productId], references: [id])
+}
+
+model Order {
+    id         String      @id @default(uuid()) @map("_id")
+    total      Float
+    userId     String
+    user       User        @relation(fields: [userId], references: [id])
+    orderItems OrderItem[]
+    payment    Payment?
+    paymentId  String?
+    shipping   Shipping?
+    shippingId String?
+}
+
+model OrderItem {
+    id        String  @id @default(uuid()) @map("_id")
+    quantity  Int
+    productId String
+    orderId   String
+    product   Product @relation(fields: [productId], references: [id])
+    order     Order   @relation(fields: [orderId], references: [id])
+}
+
+model Payment {
+    id      String        @id @default(uuid()) @map("_id")
+    method  String
+    status  PaymentStatus
+    orderId String        @unique
+    order   Order         @relation(fields: [orderId], references: [id])
+}
+
+model Shipping {
+    id      String         @id @default(uuid()) @map("_id")
+    method  String
+    status  ShippingStatus
+    orderId String         @unique
+    order   Order          @relation(fields: [orderId], references: [id])
+}
+
+model Event {
+    id        String    @id @default(uuid()) @map("_id")
+    type      EventType
+    userId    String
+    user      User      @relation(fields: [userId], references: [id])
+    createdAt DateTime  @default(now())
+}
+
+model NewsletterSubscription {
+    id        String   @id @default(uuid()) @map("_id")
+    email     String   @unique
+    createdAt DateTime @default(now())
+}
+
+enum Role {
+    USER
+    ADMIN
+}
+
+enum EventType {
+    CLICK
+    PURCHASE
+    SEARCH
+}
+
+enum PaymentStatus {
+    PENDING
+    COMPLETED
+    FAILED
+}
+
+enum ShippingStatus {
+    PENDING
+    SHIPPED
+    DELIVERED
+}

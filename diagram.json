@@ -1,0 +1,220 @@
+{
+    "ecommerce": {
+        "usuarios": {
+            "register": {
+                "description": "Registra un nuevo usuario",
+                "method": "POST",
+                "endpoint": "/api/users/register"
+            },
+            "login": {
+                "description": "Inicia sesión de un usuario existente",
+                "method": "POST",
+                "endpoint": "/api/users/login"
+            },
+            "profile": {
+                "get": {
+                    "description": "Obtiene el perfil del usuario actual",
+                    "method": "GET",
+                    "endpoint": "/api/users/profile"
+                },
+                "update": {
+                    "description": "Actualiza el perfil del usuario actual",
+                    "method": "PUT",
+                    "endpoint": "/api/users/profile"
+                },
+                "getById": {
+                    "description": "Obtiene el perfil de un usuario específico",
+                    "method": "GET",
+                    "endpoint": "/api/users/:id"
+                },
+                "delete": {
+                    "description": "Elimina un usuario específico",
+                    "method": "DELETE",
+                    "endpoint": "/api/users/:id"
+                },
+                "getAddresses": {
+                    "description": "Obtiene todas las direcciones de un usuario específico",
+                    "method": "GET",
+                    "endpoint": "/api/users/:id/addresses"
+                },
+                "addAddress": {
+                    "description": "Agrega una nueva dirección a un usuario específico",
+                    "method": "POST",
+                    "endpoint": "/api/users/:id/addresses"
+                },
+                "updateAddress": {
+                    "description": "Actualiza una dirección específica de un usuario específico",
+                    "method": "PUT",
+                    "endpoint": "/api/users/:id/addresses/:addressId"
+                },
+                "deleteAddress": {
+                    "description": "Elimina una dirección específica de un usuario específico",
+                    "method": "DELETE",
+                    "endpoint": "/api/users/:id/addresses/:addressId"
+                }
+            }
+        },
+        "productos": {
+            "getAll": {
+                "description": "Obtiene todos los productos",
+                "method": "GET",
+                "endpoint": "/api/products"
+            },
+            "getOne": {
+                "description": "Obtiene un producto específico",
+                "method": "GET",
+                "endpoint": "/api/products/:id"
+            },
+            "create": {
+                "description": "Crea un nuevo producto",
+                "method": "POST",
+                "endpoint": "/api/products"
+            },
+            "update": {
+                "description": "Actualiza un producto específico",
+                "method": "PUT",
+                "endpoint": "/api/products/:id"
+            },
+            "delete": {
+                "description": "Elimina un producto específico",
+                "method": "DELETE",
+                "endpoint": "/api/products/:id"
+            },
+            "getInventory": {
+                "description": "Obtiene el inventario de un producto específico",
+                "method": "GET",
+                "endpoint": "/api/products/:id/inventory"
+            },
+            "updateInventory": {
+                "description": "Actualiza el inventario de un producto específico",
+                "method": "PUT",
+                "endpoint": "/api/products/:id/inventory"
+            }
+        },
+        "carrito": {
+            "get": {
+                "description": "Obtiene todos los productos en el carrito del usuario actual",
+                "method": "GET",
+                "endpoint": "/api/cart"
+            },
+            "add": {
+                "description": "Agrega un producto al carrito del usuario actual",
+                "method": "POST",
+                "endpoint": "/api/cart"
+            },
+            "update": {
+                "description": "Actualiza la cantidad de un producto específico en el carrito del usuario actual",
+                "method": "PUT",
+                "endpoint": "/api/cart/:id"
+            },
+            "delete": {
+                "description": "Elimina un producto específico del carrito del usuario actual",
+                "method": "DELETE",
+                "endpoint": "/api/cart/:id"
+            }
+        },
+        "pedidos": {
+            "getAll": {
+                "description": "Obtiene todos los pedidos del usuario actual",
+                "method": "GET",
+                "endpoint": "/api/orders"
+            },
+            "getOne": {
+                "description": "Obtiene un pedido específico",
+                "method": "GET",
+                "endpoint": "/api/orders/:id"
+            },
+            "create": {
+                "description": "Crea un nuevo pedido",
+                "method": "POST",
+                "endpoint": "/api/orders"
+            },
+            "update": {
+                "description": "Actualiza un pedido específico",
+                "method": "PUT",
+                "endpoint": "/api/orders/:id"
+            },
+            "cancel": {
+                "description": "Cancela un pedido específico",
+                "method": "DELETE",
+                "endpoint": "/api/orders/:id"
+            },
+            "getPaymentDetails": {
+                "description": "Obtiene los detalles de pago de un pedido específico",
+                "method": "GET",
+                "endpoint": "/api/orders/:id/payment"
+            },
+            "updatePaymentDetails": {
+                "description": "Actualiza los detalles de pago de un pedido específico",
+                "method": "PUT",
+                "endpoint": "/api/orders/:id/payment"
+            },
+            "getShippingDetails": {
+                "description": "Obtiene los detalles de envío de un pedido específico",
+                "method": "GET",
+                "endpoint": "/api/orders/:id/shipping"
+            },
+            "updateShippingDetails": {
+                "description": "Actualiza los detalles de envío de un pedido específico",
+                "method": "PUT",
+                "endpoint": "/api/orders/:id/shipping"
+            }
+        },
+        "pago": {
+            "process": {
+                "description": "Procesa un pago",
+                "method": "POST",
+                "endpoint": "/api/payment"
+            }
+        },
+        "marketing": {
+            "subscribe": {
+                "description": "Suscribe al usuario actual al boletín informativo",
+                "method": "POST",
+                "endpoint": "/api/newsletter/subscribe"
+            },
+            "promotion": {
+                "description": "Envía un correo electrónico promocional al usuario actual",
+                "method": "POST",
+                "endpoint": "/api/email/promotion"
+            },
+            "getSubscriptions": {
+                "description": "Obtiene todas las suscripciones al boletín",
+                "method": "GET",
+                "endpoint": "/api/newsletter/subscriptions"
+            },
+            "cancelSubscription": {
+                "description": "Cancela una suscripción al boletín",
+                "method": "DELETE",
+                "endpoint": "/api/newsletter/subscriptions/:subscriptionId"
+            }
+        },
+        "analitica": {
+            "click": {
+                "description": "Registra un evento de clic del usuario actual",
+                "method": "POST",
+                "endpoint": "/api/events/click"
+            },
+            "purchase": {
+                "description": "Registra un evento de compra del usuario actual",
+                "method": "POST",
+                "endpoint": "/api/events/purchase"
+            },
+            "search": {
+                "description": "Registra un evento de búsqueda del usuario actual",
+                "method": "POST",
+                "endpoint": "/api/events/search"
+            },
+            "getAllEvents": {
+                "description": "Obtiene todos los eventos del usuario actual",
+                "method": "GET",
+                "endpoint": "/api/events"
+            },
+            "getEventById": {
+                "description": "Obtiene un evento específico",
+                "method": "GET",
+                "endpoint": "/api/events/:id"
+            }
+        }
+    }
+}

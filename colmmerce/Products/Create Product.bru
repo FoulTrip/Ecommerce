@@ -1,0 +1,44 @@
+meta {
+  name: Create Product
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:3000/api/product/create
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "Camiseta con diseño de programación",
+    "description": "Camiseta estampada con un diseño único sobre programación. Perfecta para los amantes del código.",
+    "price": 4000,
+    "images": [
+      {
+        "color": "#FFFFFF",
+        "url": "https://www.google.com"
+      }
+    ],
+    "sku": "PROG123",
+    "brand": "CodeWear",
+    "category": "Ropa",
+    "stock": 50,
+    "dimensions": {
+      "height": 10,
+      "width": 15,
+      "depth": 1
+    },
+    "weight": 0.2,
+    "materials": [
+      "Algodón",
+      "Poliéster"
+    ],
+    "tags": [
+      "programación",
+      "camiseta",
+      "ropa"
+    ]
+  }
+}

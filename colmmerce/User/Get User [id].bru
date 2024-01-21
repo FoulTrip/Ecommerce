@@ -1,0 +1,17 @@
+meta {
+  name: Get User [id]
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:3000/api/user/get
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+      "id": "1ec6343d-7615-41ee-b068-624030e6f9f1"
+  }
+}

@@ -1,0 +1,21 @@
+meta {
+  name: Create User
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:3000/api/user/create
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+      "email": "davidvasquezmahecha@gmail.com",
+      "password": "futbol03",
+      "firstName": "David",
+      "lastName": "Vasquez Mahecha",
+      "avatar": "https://www.google.com"
+  }
+}

@@ -1,0 +1,17 @@
+meta {
+  name: Delete Product
+  type: http
+  seq: 4
+}
+
+delete {
+  url: http://localhost:3000/api/product/remove
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "id": "90059ed7-5033-48c0-a9f3-9f4065b86e56"
+  }
+}

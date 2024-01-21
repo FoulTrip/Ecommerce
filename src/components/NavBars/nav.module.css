@@ -1,0 +1,85 @@
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5px 10px 5px 10px;
+}
+
+.boxLogo {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.boxImageLogo {
+  display: grid;
+  place-content: center;
+}
+
+.logo {
+  width: 40px;
+  height: auto;
+  filter: drop-shadow(5px 5px 5px #989898);
+}
+
+.textLogo {
+  display: grid;
+  place-content: center;
+}
+
+.btnOption {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.barOptions {
+  display: grid;
+  place-content: center;
+}
+
+.centerOptions {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.iconChevron {
+  display: grid;
+  place-content: center;
+}
+
+.barAccount {
+  display: grid;
+  place-content: center;
+}
+
+.optAccount {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  padding: 5px 10px 5px 10px;
+  border-radius: 1em;
+  cursor: pointer;
+  color: #000000;
+  font-weight: 300;
+}
+
+/* .optAccount:hover {
+  background: #d8d8d8;
+} */
+
+.boxIconAccount {
+  display: grid;
+  place-content: center;
+}
+
+.miniCircleIcon {
+  color: #2c2c2c;
+}
+
+.nameAccount {
+  display: grid;
+  place-content: center;
+}
