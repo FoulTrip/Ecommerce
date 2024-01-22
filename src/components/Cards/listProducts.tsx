@@ -11,10 +11,37 @@ import { TbShoppingBagPlus } from "react-icons/tb";
 import camisaModel from "@/assets/models-products/camisaProggramer.png";
 import JordanModel from "@/assets/models-products/jordan1.png";
 import Image from "next/image";
+import { NextResponse } from "next/server";
+import { Toaster, toast } from "sonner";
 
 function ListProducts() {
-  const { user } = useGlobalContext();
+  const { user, setCartData } = useGlobalContext();
   const [products, setProducts] = useState<ScalarProduct[]>([]);
+
+  const handleAddCart = async ({
+    productId,
+  }: {
+    productId: string | undefined;
+  }) => {
+    try {
+      const response = await axios.post("/api/cart/create", {
+        quantity: 2,
+        userId: user?.id,
+        productId: products[0].id,
+      });
+
+      if (response.data) {
+        const data = response.data;
+        setCartData(data);
+        toast.success("Agregado al carrito");
+        return NextResponse.json(data);
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error(error.message);
+      }
+    }
+  };
 
   const getBrandIcon = (brand: string) => {
     switch (brand) {
@@ -27,7 +54,7 @@ function ListProducts() {
       case "Puma":
         return <SiPuma size={20} />;
       case "Reebok":
-        return <SiReebok size={20} />
+        return <SiReebok size={20} />;
       // Agrega más casos según las marcas que tengas
       default:
         return null; // Devuelve null si no hay un icono definido para la marca
@@ -51,6 +78,7 @@ function ListProducts() {
   if (products) {
     return (
       <>
+        <Toaster richColors />
         {products.map((product: ScalarProduct) => (
           <div key={product.id} className={styles.cardBase}>
             <div className={styles.logoBrand}>
@@ -94,7 +122,10 @@ function ListProducts() {
               </div>
             </div>
             <div className={styles.btnExplorer}>
-              <div className={styles.agreeCart}>
+              <div
+                className={styles.agreeCart}
+                onClick={() => handleAddCart({ productId: product.id })}
+              >
                 <div className={styles.iconAgree}>
                   <TbShoppingBagPlus />
                 </div>

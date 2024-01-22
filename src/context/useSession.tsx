@@ -4,26 +4,20 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { PrismaClient, User as PrismaUser } from "@prisma/client";
 import axios from "axios";
-import { ScalarUser } from "@/types/user";
-
-interface User {
-  id: string;
-  email: string;
-  role: string;
-  avatar: string;
-  firstName: string;
-  lastName: string;
-}
+import { ScalarUser, ScalarCart } from "@/types/user";
 
 interface GlobalContextType {
-  user: User | null;
-  setUserData: (userData: User | null) => void;
+  user: ScalarUser | null;
+  cart: ScalarCart[] | null;
+  setUserData: (userData: ScalarUser | null) => void;
+  setCartData: (cartData: ScalarCart[] | null) => void;
 }
 
 const GlobalContext = createContext<GlobalContextType | undefined>(undefined);
 
 export function GlobalProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<ScalarUser | null>(null);
+  const [cartState, setCartState] = useState<ScalarCart[] | null>([]);
   const prisma = new PrismaClient();
 
   useEffect(() => {
@@ -79,7 +73,7 @@ export function GlobalProvider({ children }: { children: React.ReactNode }) {
     fetchUserData();
   }, [user, prisma]);
 
-  const setUserData = (userData: User | null) => {
+  const setUserData = (userData: ScalarUser | null) => {
     setUser(userData);
 
     if (userData) {
@@ -89,8 +83,18 @@ export function GlobalProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
+  const setCartData = (cartData: ScalarCart[] | null) => {
+    setCartData(cartData);
+
+    if (cartData) {
+      Cookies.set("cartData", JSON.stringify(cartData), { expires: 7 });
+    } else {
+      Cookies.remove("cartData");
+    }
+  };
+
   return (
-    <GlobalContext.Provider value={{ user, setUserData }}>
+    <GlobalContext.Provider value={{ user, setUserData, cartState, setCartState }}>
       {children}
     </GlobalContext.Provider>
   );

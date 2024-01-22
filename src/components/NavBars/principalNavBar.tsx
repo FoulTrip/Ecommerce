@@ -15,7 +15,9 @@ import DropdownProfile from "./dropdown/DropDownProfile";
 
 function PrincipalNavBar() {
   const isResponsive = useMediaQuery({ minWidth: 800 });
-  const { user } = useGlobalContext();
+  const { user, cart } = useGlobalContext();
+  const countCart = cart ? cart.length : 0;
+
   return (
     <nav className={styles.nav}>
       <div className={styles.boxLogo}>
@@ -39,7 +41,7 @@ function PrincipalNavBar() {
                 <div className={styles.boxIconCart}>
                   <TbShoppingBag size={25} />
                 </div>
-                <p className={styles.countCart}>0</p>
+                <p className={styles.countCart}>{countCart}</p>
               </div>
               <DropdownProfile
                 label={user?.firstName ? user.firstName : "cuenta"}
@@ -56,7 +58,7 @@ function PrincipalNavBar() {
               <div className={styles.boxIconCart}>
                 <TbShoppingBag size={25} />
               </div>
-              <p className={styles.countCart}>0</p>
+              <p className={styles.countCart}></p>
             </div>
             <div className={styles.boxMenuIconResponsive}>
               <HiMenu size={25} />
