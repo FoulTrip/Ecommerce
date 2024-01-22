@@ -1,0 +1,20 @@
+meta {
+  name: Update Cart
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{Backend_url}}/api/cart/update
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "id": "id_del_carrito",
+    "quantity": 3,
+    "userId": "usuario_id",
+    "productId": "producto_id"
+  }
+}

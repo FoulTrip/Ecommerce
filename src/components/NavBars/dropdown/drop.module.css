@@ -1,13 +1,13 @@
 /* dropdown.module.css */
-.dropdown {
+/* .dropdown {
   position: relative;
   display: inline-block;
-}
+} */
 
 .dropdownButton {
   background: transparent;
   color: #272727;
-  padding: 10px;
+  padding: 5px 10px 5px 10px;
   border: none;
   cursor: pointer;
   display: grid;
@@ -15,6 +15,10 @@
   transition: background 0.3s ease;
   border-radius: 1em;
 }
+
+/* .dropdownButton:hover {
+  background: #f9f9f9;
+} */
 
 .boxImageUser {
   display: grid;
@@ -35,6 +39,8 @@
 .boxLabel {
   display: grid;
   place-content: center;
+  font-size: 15px;
+  font-weight: 500;
 }
 
 .dropdownContent {

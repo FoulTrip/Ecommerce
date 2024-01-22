@@ -1,0 +1,17 @@
+meta {
+  name: Get Cart [id]
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{Backend_url}}/api/cart/get
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "id": "id_del_carrito"
+  }
+}

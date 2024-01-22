@@ -5,16 +5,16 @@ meta {
 }
 
 post {
-  url: http://localhost:3000/api/product/create
+  url: {{Backend_url}}/api/product/create
   body: json
   auth: none
 }
 
 body:json {
   {
-    "name": "Camiseta con diseño de programación",
+    "name": "Air Jordan 1 Mid SE",
     "description": "Camiseta estampada con un diseño único sobre programación. Perfecta para los amantes del código.",
-    "price": 4000,
+    "price": 4000000,
     "images": [
       {
         "color": "#FFFFFF",
@@ -22,8 +22,8 @@ body:json {
       }
     ],
     "sku": "PROG123",
-    "brand": "CodeWear",
-    "category": "Ropa",
+    "brand": "Nike",
+    "category": "Zapatillas",
     "stock": 50,
     "dimensions": {
       "height": 10,
@@ -36,7 +36,7 @@ body:json {
       "Poliéster"
     ],
     "tags": [
-      "programación",
+      "zapatillas",
       "camiseta",
       "ropa"
     ]

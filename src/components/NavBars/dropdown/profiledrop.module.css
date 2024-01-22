@@ -1,0 +1,67 @@
+/* dropdown.module.css */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdownButton {
+    background: transparent;
+    color: #272727;
+    padding: 5px 10px 5px 10px;
+    border: none;
+    cursor: pointer;
+    display: grid;
+    place-content: center;
+    transition: background 0.3s ease;
+    border-radius: 1em;
+  }
+  
+  /* .dropdownButton:hover {
+    background: #f9f9f9;
+  } */
+  
+  .boxImageUser {
+    display: grid;
+    place-content: center;
+  }
+  
+  .boxInfoBtn {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+  }
+  
+  .boxIconChevron {
+    display: grid;
+    place-content: center;
+  }
+  
+  .boxLabel {
+    display: grid;
+    place-content: center;
+    font-size: 15px;
+    font-weight: 500;
+  }
+  
+  .dropdownContent {
+    display: none;
+    left: -135px;
+    position: absolute;
+    background: #f9f9f9;
+    min-width: 240px;
+    z-index: 1;
+    border-radius: 1em;
+    box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+  }
+  
+  .option {
+    padding: 5px;
+    display: block;
+    color: #333;
+    text-decoration: none;
+  }
+  
+  /* Show the dropdown content on hover */
+  .dropdown:hover .dropdownContent {
+    display: block;
+  }

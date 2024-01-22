@@ -83,3 +83,29 @@
   display: grid;
   place-content: center;
 }
+
+.cartWarnBox {
+  display: flex;
+  flex-direction: row;
+}
+
+.boxIconCart {
+  display: grid;
+  place-content: center;
+}
+
+.countCart {
+  display: grid;
+  place-content: center;
+}
+
+.boxMenuResponsive {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.boxMenuIconResponsive {
+  display: grid;
+  place-content: center;
+}

@@ -25,7 +25,7 @@ export async function PUT(req: Request) {
       firstName,
       lastName,
       role: "USER",
-      avatar
+      avatar,
     });
 
     // Si todo va bien, devolvemos una respuesta con el usuario actualizado en formato JSON

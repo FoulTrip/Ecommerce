@@ -1,6 +1,6 @@
 import { JsonValue } from "@prisma/client/runtime/library";
 
-type Role = "USER" | "ADMIN";
+export type Role = "USER" | "ADMIN";
 type EventType = "CLICK" | "PURCHASE" | "SEARCH";
 type PaymentStatus = "PENDING" | "COMPLETED" | "FAILED";
 type ShippingStatus = "PENDING" | "SHIPPED" | "DELIVERED";

@@ -1,0 +1,41 @@
+meta {
+  name: Product Update [id]
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{Backend_url}}/api/product/update
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "id": "232f4b9c-79f5-4022-b33d-24611fe03cca",
+    "name": "Gel-Lyte III",
+    "description": "Zapatillas de running con tecnología GEL. Perfectas para corredores.",
+    "price": 4500000,
+    "sku": "RUN789",
+    "brand": "Puma",
+    "category": "Running",
+    "stock": 80,
+    "dimensions": {
+      "height": 13,
+      "width": 18,
+      "depth": 4
+    },
+    "weight": 0.5,
+    "materials": [
+      "Malla",
+      "Goma"
+    ],
+    "tags": [
+      "running",
+      "zapatillas",
+      "correr"
+    ],
+    "createdAt": "2024-01-21T18:47:16.321Z",
+    "updatedAt": "2024-01-21T18:47:16.321Z"
+  }
+}

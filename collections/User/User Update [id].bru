@@ -1,0 +1,22 @@
+meta {
+  name: User Update [id]
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{Backend_url}}/api/user/update
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "id": "6b6cb86f-b1f8-4f55-afd7-cbc4ec09e456",
+    "email": "davidvasquezmahecha@icloud.com",
+    "password": "futbol03",
+    "firstName": "David",
+    "lastName": "Vasquez Mahecha",
+    "avatar": "https://www.google.com"
+  }
+}

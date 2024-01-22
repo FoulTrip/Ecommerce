@@ -1,0 +1,17 @@
+meta {
+  name: Delete Product [id]
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{Backend_url}}/api/product/remove
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "id": "e0b4b834-3208-48f5-a127-7d7d78603acd"
+  }
+}

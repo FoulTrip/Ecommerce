@@ -1,0 +1,38 @@
+meta {
+  name: Create order
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{Backend_url}}/api/order/create
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "total": 100.5,
+    "userId": "6b6cb86f-b1f8-4f55-afd7-cbc4ec09e456",
+    "orderItems": {
+      "create": [
+        {
+          "quantity": 2,
+          "productId": "02e7bae2-ef00-42b2-8f24-ade1ac192a60"
+        }
+      ]
+    },
+    "payment": {
+      "create": {
+        "method": "credit_card",
+        "status": "PENDING"
+      }
+    },
+    "shipping": {
+      "create": {
+        "method": "express",
+        "status": "PENDING"
+      }
+    }
+  }
+}

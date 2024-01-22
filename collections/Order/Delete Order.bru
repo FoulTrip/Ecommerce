@@ -1,0 +1,17 @@
+meta {
+  name: Delete Order
+  type: http
+  seq: 3
+}
+
+delete {
+  url: {{Backend_url}}/api/order/remove
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "id": "orderId123"
+  }
+}

@@ -1,13 +1,14 @@
 // Dropdown.tsx
 import React, { useState, ReactNode } from "react";
 import PropTypes from "prop-types";
-import styles from "./drop.module.css";
+import styles from "./profiledrop.module.css";
 import { GoChevronDown, GoChevronUp } from "react-icons/go";
 import ComercioBtnNav from "./contents/comercio";
 import MarketingBtnNav from "./contents/marketing";
 import RecursosBtnNav from "./contents/recursos";
 import { HiMiniUserCircle } from "react-icons/hi2";
 import Avatar from "react-avatar";
+import { useGlobalContext } from "@/context/useSession";
 
 interface DropdownProps {
   label: string;
@@ -21,6 +22,7 @@ const DropdownProfile: React.FC<DropdownProps> = ({
   avatar,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const { user } = useGlobalContext();
 
   const handleMouseEnter = () => {
     setIsOpen(true);
@@ -40,7 +42,7 @@ const DropdownProfile: React.FC<DropdownProps> = ({
         <div className={styles.boxInfoBtn}>
           <div className={styles.boxImageUser}>
             {avatar ? (
-              <Avatar src={avatar} size="20" round={true} />
+              <Avatar src={avatar} size="30" round={true} />
             ) : (
               <HiMiniUserCircle className={styles.miniCircleIcon} size={25} />
             )}
@@ -55,9 +57,8 @@ const DropdownProfile: React.FC<DropdownProps> = ({
         <div className={styles.dropdownContent}>
           {options.map((option, index) => (
             <div key={index} className={styles.option}>
-              {option == "comercio" ? <ComercioBtnNav /> : null}
-              {option == "marketing" ? <MarketingBtnNav /> : null}
-              {option == "recursos" ? <RecursosBtnNav /> : null}
+              {option == "cuenta" ? <ComercioBtnNav /> : null}
+              {option == user?.firstName ? <ComercioBtnNav /> : null}
             </div>
           ))}
         </div>

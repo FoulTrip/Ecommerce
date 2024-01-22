@@ -7,6 +7,14 @@ import { Product, Review, Rating, Prisma } from "@prisma/client";
  */
 class ProductService {
   /**
+   * Obtiene todos los productos.
+   * @returns {Promise<Product[]>} Lista de todos los productos.
+   */
+  static async getAll(): Promise<Product[]> {
+    return prisma.product.findMany();
+  }
+
+  /**
    * Crea un nuevo producto.
    * @param {Partial<Product>} data - Los datos del producto a crear.
    * @returns {Promise<Product>} El producto creado.
@@ -88,6 +96,24 @@ class ProductService {
     });
 
     return prisma.product.delete({ where: { id } });
+  }
+
+  /**
+   * Obtiene marcas únicas de productos y la cantidad de productos con cada marca.
+   * @returns {Promise<{ brand: string; count: number }[]>} Lista de objetos con marca y cantidad.
+   */
+  static async getBrands(): Promise<{ brand: string; count: number }[]> {
+    const uniqueBrandsWithCount = await prisma.product.groupBy({
+      by: ["brand"],
+      _count: {
+        brand: true,
+      },
+    });
+
+    return uniqueBrandsWithCount.map(({ brand, _count }) => ({
+      brand,
+      count: _count.brand,
+    }));
   }
 }
 

@@ -1,0 +1,17 @@
+meta {
+  name: Get Order [id]
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{Backend_url}}/api/order/get
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "id": ""
+  }
+}

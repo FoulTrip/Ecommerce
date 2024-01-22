@@ -1,0 +1,33 @@
+.Bar {
+  display: flex;
+  flex-direction: row;
+  margin-top: 3em;
+  margin-bottom: 3em;
+  justify-content: space-between;
+}
+
+.boxInput {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.centerBoxInput {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  padding: 5px 10px 5px 10px;
+  background: #fff;
+  border-radius: 1em;
+  cursor: pointer;
+}
+
+.inputSearch {
+  border: none;
+  outline: none;
+}
+
+.boxiconSearch {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+}

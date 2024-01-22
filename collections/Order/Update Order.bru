@@ -1,0 +1,36 @@
+meta {
+  name: Update Order
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{Backend_url}}/api/order/update
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "id": "orderId123",
+    "total": 120.75,
+    "orderItems": [
+      {
+        "quantity": 3,
+        "productId": "product456"
+      },
+      {
+        "quantity": 2,
+        "productId": "product789"
+      }
+    ],
+    "payment": {
+      "method": "paypal",
+      "status": "COMPLETED"
+    },
+    "shipping": {
+      "method": "standard",
+      "status": "SHIPPED"
+    }
+  }
+}

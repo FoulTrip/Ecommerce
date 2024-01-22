@@ -1,0 +1,17 @@
+meta {
+  name: Delete User [id]
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{Backend_url}}/api/user/remove
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "id": "b4f46370-f9a4-41cf-8bae-455bc5e6a539"
+  }
+}

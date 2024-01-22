@@ -50,7 +50,7 @@ class UserService {
     id: string,
     data: Omit<ScalarUser, "password">
   ): Promise<User> {
-    return prisma.user.update({ where: { id }, data });
+    return await prisma.user.update({ where: { id }, data });
   }
 
   /**

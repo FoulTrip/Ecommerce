@@ -4,8 +4,8 @@ import Image from "next/image";
 import React from "react";
 import styles from "./nav.module.css";
 
-import { GoChevronDown, GoChevronUp } from "react-icons/go";
 import { HiMenu } from "react-icons/hi";
+import { TbShoppingBag } from "react-icons/tb";
 
 import logo from "@/assets/logos/logo-ecolmmers.png";
 import { useMediaQuery } from "react-responsive";
@@ -35,6 +35,12 @@ function PrincipalNavBar() {
           </div>
           <div className={styles.barAccount}>
             <div className={styles.optAccount}>
+              <div className={styles.cartWarnBox}>
+                <div className={styles.boxIconCart}>
+                  <TbShoppingBag size={25} />
+                </div>
+                <p className={styles.countCart}>0</p>
+              </div>
               <DropdownProfile
                 label={user?.firstName ? user.firstName : "cuenta"}
                 options={[user ? `${user.firstName}` : "cuenta"]}
@@ -46,7 +52,15 @@ function PrincipalNavBar() {
       ) : (
         <>
           <div className={styles.boxMenuResponsive}>
-            <HiMenu />
+            <div className={styles.cartWarnBox}>
+              <div className={styles.boxIconCart}>
+                <TbShoppingBag size={25} />
+              </div>
+              <p className={styles.countCart}>0</p>
+            </div>
+            <div className={styles.boxMenuIconResponsive}>
+              <HiMenu size={25} />
+            </div>
           </div>
         </>
       )}

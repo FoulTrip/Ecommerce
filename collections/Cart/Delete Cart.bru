@@ -1,0 +1,17 @@
+meta {
+  name: Delete Cart
+  type: http
+  seq: 3
+}
+
+delete {
+  url: {{Backend_url}}/api/cart/remove
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "id": "id_del_carrito"
+  }
+}
