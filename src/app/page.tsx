@@ -7,15 +7,17 @@ import { useGlobalContext } from "@/context/useSession";
 import ListProducts from "@/components/Cards/listProducts";
 import BannersHeroinSection from "@/components/carrousels/banners";
 import BarFilterProducts from "@/components/Bars/BarFilterProducts";
+import { Toaster } from "sonner";
 
 function Home() {
   const { user } = useGlobalContext();
   console.log(user);
   return (
     <>
+      <Toaster richColors />
       <PrincipalNavBar />
       <main className={styles.heroSection}>
-        <BannersHeroinSection />
+        {/* <BannersHeroinSection /> */}
         <BarFilterProducts />
         <section className={styles.boxListProducts}>
           <ListProducts />

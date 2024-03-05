@@ -1,5 +1,5 @@
 import { useGlobalContext } from "@/context/useSession";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, FormEvent } from "react";
 import axios from "axios";
 import { ScalarProduct } from "@/types/user";
 import styles from "./styles/listProduct.module.css";
@@ -12,27 +12,41 @@ import camisaModel from "@/assets/models-products/camisaProggramer.png";
 import JordanModel from "@/assets/models-products/jordan1.png";
 import Image from "next/image";
 import { NextResponse } from "next/server";
-import { Toaster, toast } from "sonner";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 function ListProducts() {
-  const { user, setCartData } = useGlobalContext();
+  const { user, setCartState } = useGlobalContext();
   const [products, setProducts] = useState<ScalarProduct[]>([]);
+
+  const route = useRouter();
 
   const handleAddCart = async ({
     productId,
+    userId,
   }: {
     productId: string | undefined;
+    userId: string | undefined;
   }) => {
     try {
       const response = await axios.post("/api/cart/create", {
         quantity: 2,
-        userId: user?.id,
-        productId: products[0].id,
+        userId: userId,
+        productId: productId,
       });
+
+      const cartData = await axios.post("/api/cart/byuser", {
+        userId: userId,
+      });
+
+      // Supongamos que el servidor devuelve un objeto con propiedades que son arreglos.
+      const data: Record<string, any> = cartData.data;
+      // Obtén las claves (propiedades) del objeto y cuenta cuántas hay.
+      const numberOfArrays: number = Object.keys(data).length;
 
       if (response.data) {
         const data = response.data;
-        setCartData(data);
+        setCartState(numberOfArrays);
         toast.success("Agregado al carrito");
         return NextResponse.json(data);
       }
@@ -73,12 +87,11 @@ function ListProducts() {
     };
 
     fetchProducts();
-  }, [user]);
+  }, []);
 
   if (products) {
     return (
       <>
-        <Toaster richColors />
         {products.map((product: ScalarProduct) => (
           <div key={product.id} className={styles.cardBase}>
             <div className={styles.logoBrand}>
@@ -121,17 +134,23 @@ function ListProducts() {
                 <p className={styles.textDescription}>{product.description}</p>
               </div>
             </div>
+            <p className={styles.price}>Price: {product.price}</p>
             <div className={styles.btnExplorer}>
               <div
                 className={styles.agreeCart}
-                onClick={() => handleAddCart({ productId: product.id })}
+                onClick={() =>
+                  handleAddCart({ productId: product.id, userId: user?.id })
+                }
               >
                 <div className={styles.iconAgree}>
                   <TbShoppingBagPlus />
                 </div>
                 <p>Agregar al carrito</p>
               </div>
-              <div className={styles.viewProduct}>
+              <div
+                className={styles.viewProduct}
+                onClick={() => route.push(`/product/${product.id}`)}
+              >
                 <div className={styles.iconAgree}>
                   <TbShoppingBagPlus />
                 </div>

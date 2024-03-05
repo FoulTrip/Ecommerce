@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { FormEvent, useEffect, useState } from "react";
 import axios from "axios";
@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import styles from "./forms.module.css";
 
 function Signin() {
-  const { setUserData, user } = useGlobalContext();
+  const { setUser, user } = useGlobalContext();
   const route = useRouter();
 
   const [data, setData] = useState({
@@ -30,19 +30,22 @@ function Signin() {
       const response = await axios.post("/api/user/signin", data);
 
       const newData = response.data;
-      setUserData(newData);
+      setUser(newData);
 
       toast.success("Usuario encontrado");
+      setInterval(() => {
+        route.push("/");
+      }, 3000);
     } catch (error) {
       toast.error("Failed signin");
     }
   };
 
-  useEffect(() => {
-    if (user?.id) {
-      route.push("/");
-    }
-  }, [user, route]);
+  // useEffect(() => {
+  //   if (user?.id) {
+  //     route.push("/");
+  //   }
+  // }, [user, route]);
 
   return (
     <>

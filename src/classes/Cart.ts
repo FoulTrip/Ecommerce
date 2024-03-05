@@ -42,6 +42,15 @@ class CartService {
   static async delete(id: string): Promise<Cart> {
     return prisma.cart.delete({ where: { id } });
   }
+
+  /**
+   * Obtiene todos los carritos que pertenecen a un usuario.
+   * @param {string} userId - El ID del usuario.
+   * @returns {Promise<Cart[]>} Lista de carritos del usuario.
+   */
+  static async getByUser(userId: string): Promise<Cart[]> {
+    return prisma.cart.findMany({ where: { userId } });
+  }
 }
 
 export default CartService;

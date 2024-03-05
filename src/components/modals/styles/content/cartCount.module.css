@@ -1,0 +1,10 @@
+.payBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.centerBanner {
+    display: grid;
+    place-content: center;
+}

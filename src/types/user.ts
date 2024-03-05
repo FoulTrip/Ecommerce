@@ -15,6 +15,15 @@ export type ScalarUser = {
   role: Role;
 };
 
+export type UserLoggin = {
+  id?: string;
+  email: string;
+  avatar: string;
+  firstName?: string | null;
+  lastName?: string | null;
+  role: Role;
+}
+
 export type ScalarProduct = {
   id?: string;
   name: string;

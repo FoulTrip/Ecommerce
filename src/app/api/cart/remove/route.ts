@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 export async function DELETE(req: Request) {
   try {
     const { id }: { id: string } = await req.json();
+    console.log(id)
 
     if (!id || typeof id !== "string") {
       return NextResponse.json(

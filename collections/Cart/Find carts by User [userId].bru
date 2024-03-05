@@ -1,0 +1,17 @@
+meta {
+  name: Find carts by User [userId]
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{Backend_url}}/api/cart/byuser
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "userId": "6b6cb86f-b1f8-4f55-afd7-cbc4ec09e456"
+  }
+}

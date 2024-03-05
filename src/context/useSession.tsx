@@ -1,23 +1,30 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, {
+  Dispatch,
+  SetStateAction,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import Cookies from "js-cookie";
 import { PrismaClient, User as PrismaUser } from "@prisma/client";
 import axios from "axios";
-import { ScalarUser, ScalarCart } from "@/types/user";
+import { UserLoggin, ScalarUser, ScalarCart } from "@/types/user";
 
 interface GlobalContextType {
-  user: ScalarUser | null;
-  cart: ScalarCart[] | null;
-  setUserData: (userData: ScalarUser | null) => void;
-  setCartData: (cartData: ScalarCart[] | null) => void;
+  user: UserLoggin | null;
+  setUser: React.Dispatch<React.SetStateAction<UserLoggin | null>>;
+  cartState: number | null;
+  setCartState: React.Dispatch<React.SetStateAction<number | null>>;
 }
 
 const GlobalContext = createContext<GlobalContextType | undefined>(undefined);
 
 export function GlobalProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<ScalarUser | null>(null);
-  const [cartState, setCartState] = useState<ScalarCart[] | null>([]);
+  const [user, setUser] = useState<UserLoggin | null>(null);
+  const [cartState, setCartState] = useState<number | null>(null);
   const prisma = new PrismaClient();
 
   useEffect(() => {
@@ -37,12 +44,18 @@ export function GlobalProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   useEffect(() => {
+    if (user) {
+      Cookies.set("userData", JSON.stringify(user), { expires: 7 });
+    }
+  }, [user]);
+
+  useEffect(() => {
     const fetchUserData = async () => {
       try {
         if (user?.id) {
           const userData = await axios.post("/api/user/get", { id: user.id });
 
-          const data: ScalarUser = userData.data;
+          const data: UserLoggin = userData.data;
 
           console.log("axios UseGlobal: ", data);
 
@@ -70,31 +83,34 @@ export function GlobalProvider({ children }: { children: React.ReactNode }) {
       }
     };
 
+    const fetchCartData = async () => {
+      try {
+        if (user?.id) {
+          const cartData = await axios.post("/api/cart/byuser", {
+            userId: user.id,
+          });
+
+          // Supongamos que el servidor devuelve un objeto con propiedades que son arreglos.
+          const data: Record<string, any> = cartData.data;
+
+          // Obtén las claves (propiedades) del objeto y cuenta cuántas hay.
+          const numberOfArrays: number = Object.keys(data).length;
+
+          console.log("axios UseGlobal cart: ", numberOfArrays);
+
+          setCartState(numberOfArrays);
+        }
+      } catch (error) {
+        console.error("Error fetching cart data:", error);
+      }
+    };
+
     fetchUserData();
+    fetchCartData();
   }, [user, prisma]);
 
-  const setUserData = (userData: ScalarUser | null) => {
-    setUser(userData);
-
-    if (userData) {
-      Cookies.set("userData", JSON.stringify(userData), { expires: 7 });
-    } else {
-      Cookies.remove("userData");
-    }
-  };
-
-  const setCartData = (cartData: ScalarCart[] | null) => {
-    setCartData(cartData);
-
-    if (cartData) {
-      Cookies.set("cartData", JSON.stringify(cartData), { expires: 7 });
-    } else {
-      Cookies.remove("cartData");
-    }
-  };
-
   return (
-    <GlobalContext.Provider value={{ user, setUserData, cartState, setCartState }}>
+    <GlobalContext.Provider value={{ user, setUser, cartState, setCartState }}>
       {children}
     </GlobalContext.Provider>
   );
